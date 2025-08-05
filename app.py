@@ -42,6 +42,16 @@ def index():
     return render_template('poll-list.html', polls=polls, users=users)
 
 
+@app.route('/add-user', methods=['POST'])
+def add_user():
+    username = request.form.get('username')
+    if not User.query.filter_by(name=username).first():
+        user = User(name=username)
+        db.session.add(user)
+        db.session.commit()
+    return redirect(url_for('index'))
+
+
 @app.route('/view/<int:poll_id>')
 @login_required
 def view_results(poll_id):

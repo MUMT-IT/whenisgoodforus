@@ -6,6 +6,16 @@
     <h1 class="subtitle is-size-6">You are currently logged in as "{{current_user if current_user.is_authenticated else 'Anonymous'}}"</h1>
     <div class="columns">
         <div class="column is-one-third">
+            <form method="post" action="{{url_for('add_user')}}">
+                <div class="field">
+                    <div class="control">
+                        <input name="username" class="input" placeholder="Username"/>
+                    </div>
+                </div>
+                <div class="field">
+                    <button type="submit" class="button is-small is-primary">Add User</button>
+                </div>
+            </form>
             <form method="get" action="{{url_for('login')}}">
                 <div class="field">
                     <label class="label">Users</label>
